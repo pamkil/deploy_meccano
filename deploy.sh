@@ -18,6 +18,7 @@ yes | git checkout master && git pull origin master && \
 #if [ "$?" -ne "0" ];then
 
 git submodule init && \
+git checkout -- . && \
 git submodule foreach git checkout -- . && \
 yes | git submodule update && \
 git submodule foreach git checkout master && \
