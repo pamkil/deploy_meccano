@@ -16,12 +16,13 @@ cd $repo_path
 #git pull |grep 'Already up-to-date.' && \
 yes | git checkout master && git pull origin master && \
 #if [ "$?" -ne "0" ];then
-git submodule init &&  yes | git submodule update && git submodule foreach git checkout master && \
 
-#cd frontend && git checkout master && git pull && \
-#cd .. && \
-#yes | git submodule update && \
+git submodule init && \
+git submodule foreach git checkout -- . && \
+yes | git submodule update && \
+git submodule foreach git checkout master && \
 git submodule foreach git pull origin master && \
+
 composer install --no-dev --no-interaction --no-progress --optimize-autoloader && \
 old_version=`ls -ll $release_path/current |awk -F\/ '{print $NF}'` && \
 
