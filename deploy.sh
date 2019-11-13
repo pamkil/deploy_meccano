@@ -94,8 +94,10 @@ if [ "$?" -ne "0" ]; then
 exit 1
 fi
 
+echo "migration accept"
 cd $release_path/$version
-php yii migrate/new all | grep 'No new migrations found'
+#php yii migrate/new all | grep 'No new migrations found'
+yes | php yii migrate
 
 current_version=`ls -ll $release_path/current |awk -F\/ '{print $NF}'`
 ls -lr $release_path/ |grep -v $current_version |tail -n +5 |awk '{print $NF}'|xargs -n1 -I {} rm -Rf $release_path/{}  && \
