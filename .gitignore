@@ -1,0 +1,6 @@
+*
+!.gitignore
+!deploy.sh
+!install.sh
+!otkat.sh
+
